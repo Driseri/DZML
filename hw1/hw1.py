@@ -8,8 +8,7 @@ def opt_2(points):
     # Вычисляем матрицу расстояний между точками.
     dist_matrix = distance_matrix(points, points)
 
-    # Функция, которая возвращает длину маршрута
-
+    # Функция, которая возвращает длину между точками
     def metric(a, b):
         distance = np.sum(np.sqrt((a - b)**2))
         return distance
@@ -77,7 +76,7 @@ axs[0].text(-1,-1, 'initial route length: '+ str(init_length), fontsize=11, colo
 
 axs[1].plot(aert[:, 0], aert[:, 1], "g--o")
 axs[1].set_title('optimized route')
-axs[1].text(-1,-1, 'optimized route length: ' + str(opt_length), fontsize=11, color='red')
+axs[1].text(-1,-1, 'optimized route length: ' + str(opt_length), fontsize=11, color='black')
 print('optimized route length: ', opt_length)
 plt.show()
 
