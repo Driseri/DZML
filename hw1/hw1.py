@@ -8,10 +8,7 @@ def opt_2(points):
     # Вычисляем матрицу расстояний между точками.
     dist_matrix = distance_matrix(points, points)
 
-    # Функция, которая возвращает длину между точками
-    def metric(a, b):
-        distance = np.sum(np.sqrt((a - b)**2))
-        return distance
+
 
     #Подсчет расстояния маршрута
     def CalculateEnergy(route):
@@ -54,29 +51,31 @@ def opt_2(points):
 
 def SimulatedAnnealing():
     nCities = 100;
-    initialTemperature = 100;
-    endTemperature = 0;
 
     cities = np.random.rand(nCities, 2) * 10
-    return cities
+    # cities = np.load('data1.npy')
+    opt_points, opt_length, init_length = opt_2(cities)
+
+    aert = np.array([list(i) for i in opt_points])
+
+    fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True)
+    # Отображение
+    axs[0].plot(cities[:, 0], cities[:, 1], "g--o")
+    axs[0].set_title('initial route')
+    axs[0].text(-1, -1, 'initial route length: ' + str(init_length), fontsize=11, color='black')
+
+    axs[1].plot(aert[:, 0], aert[:, 1], "g--o")
+    axs[1].set_title('optimized route')
+    axs[1].text(-1, -1, 'optimized route length: ' + str(opt_length), fontsize=11, color='black')
+    print('optimized route length: ', opt_length)
+    plt.show()
+
 
 points = SimulatedAnnealing()
 
 
 
-opt_points, opt_length, init_length = opt_2(points)
 
-aert = np.array([list(i) for i in opt_points])
 
-fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True)
-# Отображение
-axs[0].plot(points[:, 0], points[:, 1], "g--o")
-axs[0].set_title('initial route')
-axs[0].text(-1,-1, 'initial route length: '+ str(init_length), fontsize=11, color='black')
 
-axs[1].plot(aert[:, 0], aert[:, 1], "g--o")
-axs[1].set_title('optimized route')
-axs[1].text(-1,-1, 'optimized route length: ' + str(opt_length), fontsize=11, color='black')
-print('optimized route length: ', opt_length)
-plt.show()
 
