@@ -52,8 +52,8 @@ def opt_2(points):
 def SimulatedAnnealing():
     nCities = 100;
 
-    cities = np.random.rand(nCities, 2) * 10
-    # cities = np.load('data1.npy')
+    # cities = np.random.rand(nCities, 2) * 10
+    cities = np.load('data1.npy')
     opt_points, opt_length, init_length = opt_2(cities)
 
     aert = np.array([list(i) for i in opt_points])
